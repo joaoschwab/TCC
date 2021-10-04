@@ -87,8 +87,8 @@ def transcreveAudio(audio):
   audioTotal = AudioSegment.from_file(audio)
   fimloop = audioTotal.duration_seconds
 
-  if os.path.isfile("../../Transcricoes/" + sys.argv[1] + ".txt"):
-    os.remove("../../Transcricoes/" + sys.argv[1] + ".txt")
+  #if os.path.isfile("../../Transcricoes/" + sys.argv[1] + ".txt"):
+  #  os.remove("../../Transcricoes/" + sys.argv[1] + ".txt")
   #else:
   #  print("arquivo txt nao criado ainda!")
 

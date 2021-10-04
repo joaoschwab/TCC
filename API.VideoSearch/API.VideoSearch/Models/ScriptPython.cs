@@ -19,6 +19,7 @@ namespace API.VideoSearch.Models
 
         string scriptTrans = @"..\..\PythonScriptsAndFilesTCC\Scripts\TranscricaoPython.py";
         string scriptConvert = @"..\..\PythonScriptsAndFilesTCC\Scripts\ConvertMp4toMp3.py";
+        string scriptNormalize = @"..\..\PythonScriptsAndFilesTCC\Scripts\Normalize.py";
         string pythonEXE = @"C:\Users\joaof\AppData\Local\Programs\Python\Python39\python.exe";
 
 
@@ -67,6 +68,29 @@ namespace API.VideoSearch.Models
             Console.WriteLine(erros);
             Console.WriteLine("Conversao finalizada!");
             
+        }
+        public void Normalize(string path)
+        {
+            Console.WriteLine("Iniciando execução da normalizacao da trasncricao!");
+            var psi = new ProcessStartInfo();
+            psi.FileName = pythonEXE;
+            psi.Arguments = $"\"{scriptNormalize}\" \"{path}\"";
+
+            psi.UseShellExecute = false;
+            psi.CreateNoWindow = true;
+            psi.RedirectStandardOutput = true;
+            psi.RedirectStandardError = true;
+
+            var erros = "";
+            var results = "";
+            using (var process = Process.Start(psi))
+            {
+                erros = process.StandardError.ReadToEnd();
+                results = process.StandardOutput.ReadToEnd();
+            }
+            Console.WriteLine(erros);
+            Console.WriteLine("Normalizacao finalizada!");
+
         }
     }
 }
