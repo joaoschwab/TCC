@@ -28,7 +28,7 @@ namespace API.VideoSearch.Controllers
         }
 
         [HttpPost("trans")]
-
+        [RequestSizeLimit(100_000_000)]
         public void PostTranscript(IFormFile file)
         {
             ScriptPython script = new ScriptPython();
